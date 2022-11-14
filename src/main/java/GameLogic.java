@@ -9,7 +9,7 @@ public class GameLogic {
 
     public static String[] places = {"Бесконечные горы", "Близлежайшие леса", "Замок Императора", "Тронный зал"};
     public static String[] encounters = {"Battle", "Battle", "Battle", "Rest", "Rest"};
-    public static String[] enemies = {"Ogre", "Ogre", "Goblin", "Goblin", "Stone Elemental"};
+    public static String[] enemies = {"Огр", "Гоблин", "Марадер", "Бандит", "Волк"};
 
     public static int act = 1;
     public static int place = 0;
@@ -88,10 +88,12 @@ public class GameLogic {
     public static void gameLoop() {  //основной игровой цикл
         while (isRunning) {
             printMenu();
-            int input = readInt("-> ", 3);
+            int input = readInt("-> ", 4);
             if (input == 1)
                 continueJourney();
             else if (input == 2)
+                shop();
+            else if (input == 3)
                 characterInfo();
             else
                 isRunning = false;
@@ -104,8 +106,9 @@ public class GameLogic {
         System.out.println("Выберите действие");
         printSeparator(20);
         System.out.println("(1) Продолжить путешествие");
-        System.out.println("(2) Информация о персонаже");
-        System.out.println("(3) Выйти из игры");
+        System.out.println("(2) Отправиться к городскому торговцу");
+        System.out.println("(3) Информация о персонаже");
+        System.out.println("(4) Выйти из игры");
 
     }
 
@@ -305,7 +308,7 @@ public class GameLogic {
         System.out.println("Лечебное зелье: " + price + " ед золота");
         printSeparator(20);
 
-        System.out.println("Хотите купить? \n (1) Да \n(2) Нет");
+        System.out.println("Хотите купить? \n(1) Да \n(2) Нет");
         int input = readInt("->", 2);
         if (input == 1) {
             clearConsole();
@@ -320,7 +323,7 @@ public class GameLogic {
         }
     }
 
-    public  static void takeRest() {
+    public static void takeRest() {
         clearConsole();
 
         if (player.restsLeft >= 1) {
