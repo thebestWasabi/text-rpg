@@ -117,6 +117,17 @@ public class GameLogic {
         }
     }
 
+    private static void randomEncounter() {
+        int encounter = (int) (Math.random() * encounters.length);
+        if (encounters[encounter].equals("Battle")) {
+            //randomBattle();
+        } else if (encounters[encounter].equals("Rest")) {
+            //takeRest();
+        } else {
+            //shop();
+        }
+    }
+
     private static void checkAct() {
         if (player.xp >= 10 && act == 1) {
             act = 2;
@@ -124,18 +135,42 @@ public class GameLogic {
             Story.printFirstActOutro();
             player.chooseTrait();        //персонаж апнул лвл
             Story.printSecondActIntro();
+            enemies[0] = "Марадер";
+            enemies[1] = "Гоблин";
+            enemies[2] = "Волчья стая";
+            enemies[3] = "Приспешник Императора";
+            enemies[4] = "Скелет";
+            encounters[0] = "Battle";
+            encounters[1] = "Battle";
+            encounters[2] = "Battle";
+            encounters[3] = "Rest";
+            encounters[4] = "Shop";
+            player.hp = player.maxHp;
         } else if (player.xp >= 50 && act == 2) {
             act = 3;
             place = 2;
             Story.printSecondActOutro();
             player.chooseTrait();        //персонаж апнул лвл
             Story.printThirdActIntro();
+            enemies[0] = "Марадер";
+            enemies[1] = "Марадер";
+            enemies[2] = "Приспешник Императора";
+            enemies[3] = "Приспешник Императора";
+            enemies[4] = "Приспешник Императора";
+            encounters[0] = "Battle";
+            encounters[1] = "Battle";
+            encounters[2] = "Battle";
+            encounters[3] = "Rest";
+            encounters[4] = "Shop";
+            player.hp = player.maxHp;
         } else if (player.xp >= 100 && act == 3) {
             act = 4;
             place = 3;
             Story.printThirdActOutro();
             player.chooseTrait();        //персонаж апнул лвл
             Story.printFourthActIntro();
+            player.hp = player.maxHp;
+//            finalBattle();
         }
     }
 
