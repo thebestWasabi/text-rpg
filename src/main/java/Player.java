@@ -3,6 +3,8 @@ public class Player extends Character {
     public int numAttackUpgrades;
     public int numDefenceUpgrades;
 
+    int gold, restsLeft, pots;
+
     public String[] attackUpgrades = {"Strength", "Power", "Might", "Godlike Strength"};
     public String[] defenceUpgrades = {"Heavy Bones", "Stone Skin", "Scale Armor", "Holy Aura"};
 
@@ -10,6 +12,9 @@ public class Player extends Character {
         super(name, 100, 0);
         this.numAttackUpgrades = 0;
         this.numDefenceUpgrades = 0;
+        this.gold = 5;
+        this.restsLeft = 1;
+        this.pots = 0;
         //игрок выбирает черту при создании нового персонажа
         chooseTrait();
 
@@ -17,12 +22,12 @@ public class Player extends Character {
 
     @Override
     public int attack() {
-        return 0;
+        return (int) (Math.random() * (xp / 4 + numAttackUpgrades * 3 + 3) + xp / 10 + numAttackUpgrades * 2 + numDefenceUpgrades + 1);
     }
 
     @Override
-    public int defend() {
-        return 0;
+    public int defence() {
+        return (int) (Math.random() * (xp / 4 + numDefenceUpgrades * 3 + 3) + xp / 10 + numDefenceUpgrades * 2 + numAttackUpgrades + 1);
     }
 
     //позвольте игроку выбрать черту
